@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using Telephony.Models;
 
 namespace Telephony
 {
-  class Program
+  public class Program
   {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
       var baseStation = new BaseStation(10);
       var baseStation3G = new BaseStation3G(10);

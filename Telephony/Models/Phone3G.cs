@@ -1,6 +1,6 @@
-﻿namespace Telephony.Models
+namespace Telephony.Models
 {
-  class Phone3G : Phone
+  public class Phone3G : Phone
   {
     public override void Call(Contact contact)
     {

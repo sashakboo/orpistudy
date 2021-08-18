@@ -1,6 +1,6 @@
-﻿namespace Telephony.Models
+namespace Telephony.Models
 {
-  class Contact
+  public class Contact
   {
     public PhoneNumber Number { get; set; }
 

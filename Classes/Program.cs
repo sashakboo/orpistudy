@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Classes
@@ -13,7 +13,7 @@ namespace Classes
       var work = new Work();
       var noEntity = new NoEntity();
 
-      var objs = new List<(object, object)>() 
+      var objs = new List<(object, object)>()
       {
         (entity, entity),
         (entity, memo),

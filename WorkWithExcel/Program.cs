@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -6,11 +6,11 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace WorkWithExcel
 {
-  class Program
+  public class Program
   {
     const decimal MAX_PRICE = 10000m;
 
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
       var sourceProducts = new List<Product>()
       {
@@ -35,7 +35,7 @@ namespace WorkWithExcel
     }
 
 
-    static void ExportToExcel(List<Product> products, string path)
+    private static void ExportToExcel(List<Product> products, string path)
     {
       var excel = new Excel.Application();
       var workbooks = excel.Workbooks;

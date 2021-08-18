@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Telephony.Models
 {
-  class Phone
+  public class Phone
   {
     private bool callInProgress = false;
 
@@ -11,7 +11,7 @@ namespace Telephony.Models
 
     private BaseStation baseStation;
 
-    public string IMEI => imei;
+    public string IMEI => this.imei;
 
     public PhoneNumber Number { get; set; }
 
@@ -28,11 +28,11 @@ namespace Telephony.Models
 
     public virtual void Call(PhoneNumber number)
     {
-      if (baseStation == null)
+      if (this.baseStation == null)
         throw new Exception("Телефон не подключен к базовой станции");
 
       this.CheckNumberBeforeCall(number);
-      baseStation.ReceiveCall(this, number.FullNumber);
+      this.baseStation.ReceiveCall(this, number.FullNumber);
     }
 
     public virtual void Call(Contact contact)
@@ -43,15 +43,15 @@ namespace Telephony.Models
 
     public void ReceiveIncomingCall()
     {
-      if (callInProgress)
+      if (this.callInProgress)
         throw new Exception("Busy");
 
-      callInProgress = true;
+      this.callInProgress = true;
     }
 
     public void StopCall()
     {
-      callInProgress = false;
+      this.callInProgress = false;
     }
 
     protected virtual void CheckNumberBeforeCall(PhoneNumber number)
@@ -66,7 +66,7 @@ namespace Telephony.Models
     public Phone(string imei, PhoneNumber number)
     {
       this.imei = imei;
-      Number = number;
+      this.Number = number;
     }
   }
 }

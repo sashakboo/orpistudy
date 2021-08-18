@@ -1,6 +1,6 @@
-﻿namespace Telephony.Models
+namespace Telephony.Models
 {
-  class BaseStation3G : BaseStation
+  public class BaseStation3G : BaseStation
   {
     public BaseStation3G(int initialSize)
       : base(initialSize)

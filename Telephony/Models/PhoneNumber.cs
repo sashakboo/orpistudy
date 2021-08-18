@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
 namespace Telephony.Models
 {
-  class PhoneNumber
+  public class PhoneNumber
   {
     private readonly string fullNumber;
 
@@ -10,7 +10,7 @@ namespace Telephony.Models
 
     public string Number { get; private set; }
 
-    public string FullNumber => fullNumber;
+    public string FullNumber => this.fullNumber;
 
     public override bool Equals(object obj)
     {
@@ -22,14 +22,14 @@ namespace Telephony.Models
 
     public override int GetHashCode()
     {
-      return fullNumber.GetHashCode();
+      return this.fullNumber.GetHashCode();
     }
 
     public PhoneNumber(string countryCode, string number)
     {
-      CountryCode = countryCode;
-      Number = number;
-      fullNumber = (CountryCode + Number).ToLower();
+      this.CountryCode = countryCode;
+      this.Number = number;
+      this.fullNumber = (this.CountryCode + this.Number).ToLower();
     }
 
   }

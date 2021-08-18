@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Telephony.Models
 {
-  class BaseStation
+  public class BaseStation
   {
     private readonly List<Phone> phones;
 
@@ -17,12 +17,12 @@ namespace Telephony.Models
     public virtual void Unregister(Phone phone)
     {
       if (this.IsRegistered(phone))
-        phones.Remove(phone);
+        this.phones.Remove(phone);
     }
 
     public bool IsRegistered(Phone phone)
     {
-      return phones.IndexOf(phone) > -1;
+      return this.phones.IndexOf(phone) > -1;
     }
 
     public virtual void ReceiveCall(Phone initiator, string number)

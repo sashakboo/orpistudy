@@ -1,6 +1,6 @@
-﻿namespace WorkWithExcel
+namespace WorkWithExcel
 {
-  struct Product
+  public struct Product
   {
     public string Name { get; set; }
 
