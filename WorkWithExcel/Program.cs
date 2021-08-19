@@ -28,14 +28,13 @@ namespace WorkWithExcel
         .OrderBy(x => x.Name)
         .ToList();
 
-      ExportToExcel(preparedProducts, AppDomain.CurrentDomain.BaseDirectory + Guid.NewGuid() + ".xlsx");
-
+      OpenInExcel(preparedProducts);
 
       Console.ReadKey();
     }
 
 
-    private static void ExportToExcel(List<Product> products, string path)
+    private static void OpenInExcel(List<Product> products)
     {
       var excel = new Excel.Application();
       var workbooks = excel.Workbooks;
@@ -43,7 +42,7 @@ namespace WorkWithExcel
       var worksheets = workbook.Worksheets;
       var worksheet = (Excel._Worksheet) worksheets.Item[1];
       worksheet.Cells[1, 1] = "Наименование товара";
-      worksheet.Cells[1, 2] = "Цена товара";     
+      worksheet.Cells[1, 2] = "Цена товара";
 
       for (int i = 0; i < products.Count; i++)
       {
@@ -51,16 +50,7 @@ namespace WorkWithExcel
         worksheet.Cells[i + 2, 2] = products[i].Price;
       }
 
-      workbook.SaveAs(path);
-      workbook.Close();
-      excel.Quit();
-
-      
-      Marshal.ReleaseComObject(worksheet);
-      Marshal.ReleaseComObject(worksheets);
-      Marshal.ReleaseComObject(workbook);
-      Marshal.ReleaseComObject(workbooks);
-      Marshal.ReleaseComObject(excel);
+      excel.Visible = true;
     }
   }
 }
