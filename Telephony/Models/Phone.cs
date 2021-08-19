@@ -5,17 +5,23 @@ namespace Telephony.Models
 {
   public class Phone
   {
-    private bool callInProgress = false;
-
-    private readonly string imei;
+    private bool callInProgress;
 
     private BaseStation baseStation;
 
-    public string IMEI => this.imei;
+    public string IMEI { get; }
 
     public PhoneNumber Number { get; set; }
 
-    public IList<Contact> Contacts { get; set; }
+    public List<Contact> Contacts { get; } = new List<Contact>();
+
+    internal event EventHandler<PhoneCallEventArgs> Calling;
+
+    public Phone(string imei, PhoneNumber number)
+    {
+      this.IMEI = imei;
+      this.Number = number;
+    }
 
     public virtual void Connect(BaseStation station)
     {
@@ -24,20 +30,24 @@ namespace Telephony.Models
 
       station.Register(this);
       this.baseStation = station;
-    }
+    }  
 
     public virtual void Call(PhoneNumber number)
     {
       if (this.baseStation == null)
         throw new Exception("Телефон не подключен к базовой станции");
 
+      if (this.callInProgress)
+        throw new Exception("Звонок уже запущен.");
+
+      this.callInProgress = true;
       this.CheckNumberBeforeCall(number);
-      this.baseStation.ReceiveCall(this, number.FullNumber);
+      this.Calling?.Invoke(this, new PhoneCallEventArgs(number));
     }
 
     public virtual void Call(Contact contact)
     {
-      PhoneNumber number = contact.Number;
+      var number = contact.Number;
       this.Call(number);
     }
 
@@ -63,10 +73,17 @@ namespace Telephony.Models
         throw new ArgumentOutOfRangeException(nameof(number), $"Невозможно выполнить вызов на свой номер {number.FullNumber}");
     }
 
-    public Phone(string imei, PhoneNumber number)
+    public override bool Equals(object obj)
     {
-      this.imei = imei;
-      this.Number = number;
+      if (obj is Phone phone)
+        return this.IMEI.Equals(phone.IMEI, StringComparison.InvariantCultureIgnoreCase);
+
+      return false;
+    }
+
+    public override int GetHashCode()
+    {
+      return this.IMEI.GetHashCode();
     }
   }
 }

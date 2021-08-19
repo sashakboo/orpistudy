@@ -48,6 +48,7 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\Phone3G.cs" />
+    <Compile Include="Models\PhoneCallEventArgs.cs" />
     <Compile Include="Models\PhoneNumber.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

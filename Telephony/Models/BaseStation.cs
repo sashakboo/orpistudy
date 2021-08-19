@@ -8,16 +8,27 @@ namespace Telephony.Models
   {
     private readonly List<Phone> phones;
 
+    public BaseStation()
+    {
+      this.phones = new List<Phone>();
+    }
+
     public virtual void Register(Phone phone)
     {
       if (!this.IsRegistered(phone))
+      {
         this.phones.Add(phone);
+        phone.Calling += this.PhoneCalling;
+      }
     }
 
     public virtual void Unregister(Phone phone)
     {
       if (this.IsRegistered(phone))
+      {
+        phone.Calling -= this.PhoneCalling;
         this.phones.Remove(phone);
+      }
     }
 
     public bool IsRegistered(Phone phone)
@@ -25,25 +36,30 @@ namespace Telephony.Models
       return this.phones.IndexOf(phone) > -1;
     }
 
-    public virtual void ReceiveCall(Phone initiator, string number)
+    protected virtual void RedirectCall(Phone initiator, Phone receiver)
     {
-      if (!this.IsRegistered(initiator))
-        throw new Exception("Initiator is not registered");
-
-      var receiver = this.phones.FirstOrDefault(x => x.Number.FullNumber.Equals(number, StringComparison.InvariantCultureIgnoreCase));
-      if (receiver == null)
-        throw new Exception($"Number {number} not found");
-
       receiver.ReceiveIncomingCall();
       receiver.StopCall();
+      initiator.StopCall();
     }
 
-    public BaseStation(int initialSize)
+    private void PhoneCalling(object sender, PhoneCallEventArgs e)
     {
-      if (initialSize <= 0)
-        throw new ArgumentOutOfRangeException(nameof(initialSize), "Size must be greater then 0");
+      var initiator = sender as Phone;
+      var receiverNumber = e.ReceiverNumber;
 
-      this.phones = new List<Phone>(initialSize);
+      if (initiator == null)
+        throw new ArgumentNullException(nameof(initiator));
+
+      if (receiverNumber == null)
+        throw new ArgumentNullException(nameof(receiverNumber));
+
+      var receiver = this.phones.FirstOrDefault(x => x.Number.Equals(receiverNumber));
+
+      if (receiver == null)
+        throw new Exception($"Number {receiverNumber.FullNumber} not found");
+
+      this.RedirectCall(initiator, receiver);
     }
   }
 }

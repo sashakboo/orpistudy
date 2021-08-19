@@ -6,11 +6,18 @@ namespace Telephony.Models
   {
     private readonly string fullNumber;
 
-    public string CountryCode { get; private set; }
+    public string CountryCode { get; }
 
-    public string Number { get; private set; }
+    public string Number { get; }
 
     public string FullNumber => this.fullNumber;
+
+    public PhoneNumber(string countryCode, string number)
+    {
+      this.CountryCode = countryCode;
+      this.Number = number;
+      this.fullNumber = (this.CountryCode + this.Number).ToLower();
+    }
 
     public override bool Equals(object obj)
     {
@@ -24,13 +31,5 @@ namespace Telephony.Models
     {
       return this.fullNumber.GetHashCode();
     }
-
-    public PhoneNumber(string countryCode, string number)
-    {
-      this.CountryCode = countryCode;
-      this.Number = number;
-      this.fullNumber = (this.CountryCode + this.Number).ToLower();
-    }
-
   }
 }

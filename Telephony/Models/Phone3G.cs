@@ -1,7 +1,16 @@
+using System;
+
 namespace Telephony.Models
 {
   public class Phone3G : Phone
   {
+    internal event EventHandler InternetConnecting;
+
+    public void OpenInternetConnection()
+    {
+      this.InternetConnecting?.Invoke(this, null);
+    }
+
     public override void Call(Contact contact)
     {
       base.Call(contact);
