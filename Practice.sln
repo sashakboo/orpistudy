@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "Classes\Classes.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWithExcel", "WorkWithExcel\WorkWithExcel.csproj", "{4F1F5C85-B720-4A06-944B-13347D3FF711}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportDocuments", "ExportDocuments\ExportDocuments.csproj", "{0E8855F9-AB3B-420D-A346-3475DEBA0C21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4F1F5C85-B720-4A06-944B-13347D3FF711}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F1F5C85-B720-4A06-944B-13347D3FF711}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F1F5C85-B720-4A06-944B-13347D3FF711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E8855F9-AB3B-420D-A346-3475DEBA0C21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E8855F9-AB3B-420D-A346-3475DEBA0C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E8855F9-AB3B-420D-A346-3475DEBA0C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E8855F9-AB3B-420D-A346-3475DEBA0C21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
