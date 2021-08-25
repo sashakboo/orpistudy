@@ -85,7 +85,8 @@ namespace Classes
 
       var commonAncestor = ancestorsType1
         .Intersect(ancestorsType2)
-        .Where(x => x != typeof(object));
+        .Where(x => x != typeof(object))
+        .ToList();
 
       if (commonAncestor.Any())
       {
