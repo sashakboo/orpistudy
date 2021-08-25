@@ -3,11 +3,11 @@ namespace ExportDocuments.Exporter
   /// <summary>
   /// Базовый декоратор для экспортируемых документов.
   /// </summary>
-  public abstract class DocumentExporterBase : IExporter
+  public abstract class ExporterDecoratorBase : IExporter
   {
     protected IExporter exported;
 
-    public DocumentExporterBase(IExporter exported)
+    public ExporterDecoratorBase(IExporter exported)
     {
       this.exported = exported;
     }

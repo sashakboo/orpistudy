@@ -22,7 +22,7 @@ namespace ExportDocuments
       if (!Directory.Exists(path))
         Directory.CreateDirectory(path);
 
-      IExporter exporter= document as IExporter;
+      IExporter exporter= new DocumentExporter(document);
 
       if (withEncryption)
         exporter = new DocumentExporterWithEncrypt(exporter);

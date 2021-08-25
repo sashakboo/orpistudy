@@ -6,7 +6,7 @@ namespace ExportDocuments.Exporter
   /// <summary>
   /// Декоратор для экспорта с шифрованием.
   /// </summary>
-  public class DocumentExporterWithEncrypt : DocumentExporterBase
+  public class DocumentExporterWithEncrypt : ExporterDecoratorBase
   {
     public DocumentExporterWithEncrypt(IExporter exported)
       : base(exported)

@@ -4,7 +4,7 @@ using System.Text;
 using ExportDocuments.Wrappers;
 namespace ExportDocuments.Models
 {
-  public class DocumentKit : DocumentBase, IExporter
+  public class DocumentKit : DocumentBase
   {
     public List<IDocument> Documents { get; }
 
@@ -27,20 +27,6 @@ namespace ExportDocuments.Models
       }
 
       return description.ToString();
-    }
-
-    public void Export(string path)
-    {
-      var descriptionFileName = FileWriter.BuildFilePath(path, $"{this.Name}_Description.txt");
-      FileWriter.Export(descriptionFileName, this.GetDescription());
-
-      string childrenPath = FileWriter.BuildFilePath(path, this.Name);
-      FileWriter.CreateFolder(childrenPath);
-
-      foreach (IExporter document in this.Documents)
-      {
-        document.Export(childrenPath);
-      }
     }
   }
 }

@@ -6,7 +6,7 @@ namespace ExportDocuments.Exporter
   /// <summary>
   /// Декоратор для экспорта с архивированием.
   /// </summary>
-  public class DocumentExporterWithZip : DocumentExporterBase
+  public class DocumentExporterWithZip : ExporterDecoratorBase
   {
     public DocumentExporterWithZip(IExporter exported)
       : base(exported)
