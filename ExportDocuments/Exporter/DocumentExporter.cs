@@ -29,14 +29,12 @@ namespace ExportDocuments.Exporter
       var fileName = FileWriter.BuildFilePath(path, this.document.Name + ".txt");
       FileWriter.Export(fileName, (this.document as Document).Text);
 
-      var descriptionFileName = FileWriter.BuildFilePath(path, $"{this.document.Name}_Description.txt");
-      FileWriter.Export(descriptionFileName, this.document.GetDescription());
+      this.ExportDescription(path);
     }
 
-    public void ExportKit(string path)
+    private void ExportKit(string path)
     {
-      var descriptionFileName = FileWriter.BuildFilePath(path, $"{this.document.Name}_Description.txt");
-      FileWriter.Export(descriptionFileName, this.document.GetDescription());
+      this.ExportDescription(path);
 
       string childrenPath = FileWriter.BuildFilePath(path, this.document.Name);
       FileWriter.CreateFolder(childrenPath);
@@ -46,6 +44,12 @@ namespace ExportDocuments.Exporter
         var exporter = new DocumentExporter(doc);
         exporter.Export(childrenPath);
       }
+    }
+
+    private void ExportDescription(string path)
+    {
+      var descriptionFileName = FileWriter.BuildFilePath(path, $"{this.document.Name}_Description.txt");
+      FileWriter.Export(descriptionFileName, this.document.GetDescription());
     }
   }
 }
