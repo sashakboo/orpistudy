@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExportDocuments": {
+      "commandName": "Project",
+      "commandLineArgs": "--path=\"D:\\Export\" --compress=true --encrypt=true"
+    }
+  }
+}
