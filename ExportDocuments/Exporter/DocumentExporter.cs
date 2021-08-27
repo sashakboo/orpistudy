@@ -49,7 +49,7 @@ namespace ExportDocuments.Exporter
     private void ExportDescription(string path)
     {
       var descriptionFileName = FileWriter.BuildFilePath(path, $"{this.document.Name}_Description.txt");
-      FileWriter.Export(descriptionFileName, this.document.GetDescription());
+      FileWriter.Export(descriptionFileName, this.document.Description);
     }
   }
 }

@@ -18,8 +18,6 @@ namespace ExportDocuments
     /// <summary>
     /// Получить описание документа.
     /// </summary>
-    /// <param name="hierarchyLevel">Уровень вложенности документа.</param>
-    /// <returns></returns>
-    string GetDescription(int hierarchyLevel = 0);
+    string Description { get; }
   }
 }

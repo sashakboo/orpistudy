@@ -7,7 +7,7 @@ namespace ExportDocuments.Exporter
   {
     protected IExporter exported;
 
-    public ExporterDecoratorBase(IExporter exported)
+    protected ExporterDecoratorBase(IExporter exported)
     {
       this.exported = exported;
     }

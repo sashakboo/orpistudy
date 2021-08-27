@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ExportDocuments.Wrappers;
+using System.Linq;
+
+
 namespace ExportDocuments.Models
 {
   public class DocumentKit : DocumentBase
@@ -14,19 +16,16 @@ namespace ExportDocuments.Models
       this.Documents = documents;
     }
 
-    public override string GetDescription(int hierarchyLevel = 0)
+    public override string Description => $"Комплект {this.Name}{this.GetChildDescription()}";
+
+    private string GetChildDescription()
     {
-      var padding = string.Empty.PadLeft(hierarchyLevel, PaddingLeftSymbol);
+      var segmentDelimiter = "\r\n\t";
+      string addHierarchyLevel(string s) => segmentDelimiter + string.Join(segmentDelimiter, s.Split("\r\n"));
 
-      var description = new StringBuilder();
-      description.AppendLine($"{padding}Комплект {this.Name}");
-
-      foreach (var document in this.Documents)
-      {
-        description.AppendLine(document.GetDescription(hierarchyLevel + 1));
-      }
-
-      return description.ToString();
+      return string.Concat(
+        this.Documents.Select(x => addHierarchyLevel(x.Description))
+      );
     }
   }
 }

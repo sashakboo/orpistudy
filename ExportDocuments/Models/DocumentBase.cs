@@ -6,8 +6,6 @@ namespace ExportDocuments.Models
 {
   public abstract class DocumentBase : IDocument
   {
-    protected const char PaddingLeftSymbol = '\t';
-
     public string Name { get; set; }
 
     public int Id { get; }
@@ -18,6 +16,6 @@ namespace ExportDocuments.Models
       this.Name = name;
     }
 
-    public abstract string GetDescription(int hierarchyLevel = 0);
+    public abstract string Description { get; }
   }
 }

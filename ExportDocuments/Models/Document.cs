@@ -7,16 +7,12 @@ namespace ExportDocuments.Models
   {
     public string Text { get; set; }
 
+    public override string Description => $"Документ {this.Name}";
+
     public Document(int id, string name, string text)
       : base(id, name)
     {
       this.Text = text;
-    }
-
-    public override string GetDescription(int hierarchyLevel = 0)
-    {
-      var padding = string.Empty.PadLeft(hierarchyLevel, PaddingLeftSymbol);
-      return $"{padding}Документ {this.Name}";
     }
   }
 }
