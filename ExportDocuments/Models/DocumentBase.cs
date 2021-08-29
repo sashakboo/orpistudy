@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace ExportDocuments.Models
 {
   public abstract class DocumentBase : IDocument
@@ -10,7 +6,7 @@ namespace ExportDocuments.Models
 
     public int Id { get; }
 
-    public DocumentBase (int id, string name)
+    public DocumentBase(int id, string name)
     {
       this.Id = id;
       this.Name = name;

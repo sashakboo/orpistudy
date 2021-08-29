@@ -1,6 +1,6 @@
-using System;
 using ExportDocuments.Models;
 using ExportDocuments.Wrappers;
+using System;
 
 namespace ExportDocuments.Exporter
 {

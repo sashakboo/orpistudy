@@ -1,6 +1,3 @@
-using System;
-using ExportDocuments.Wrappers;
-
 namespace ExportDocuments.Models
 {
   public class Document : DocumentBase

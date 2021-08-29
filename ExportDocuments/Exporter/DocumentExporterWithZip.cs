@@ -1,5 +1,4 @@
 using System;
-using System.IO.Compression;
 
 namespace ExportDocuments.Exporter
 {
@@ -8,10 +7,12 @@ namespace ExportDocuments.Exporter
   /// </summary>
   public class DocumentExporterWithZip : ExporterDecoratorBase
   {
-    public DocumentExporterWithZip(IExporter exported)
-      : base(exported)
-    {
+    private readonly IZipper zipper;
 
+    public DocumentExporterWithZip(IExporter exporter, IZipper zipper)
+      : base(exporter)
+    {
+      this.zipper = zipper;
     }
 
     public override void Export(string path)
@@ -22,8 +23,8 @@ namespace ExportDocuments.Exporter
 
     private void Zip(string path)
     {
-      string zipName = path + ".zip";
-      ZipFile.CreateFromDirectory(path, zipName);
+      var zipName = path + ".zip";
+      this.zipper.Zip(path, zipName);
       Console.WriteLine($"Файлы в папке {path} упакованы в архив с именем \"{zipName}\"");
     }
   }

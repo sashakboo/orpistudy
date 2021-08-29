@@ -1,7 +1,6 @@
-using System;
-using System.IO;
 using ExportDocuments.Exporter;
-using ExportDocuments.Models;
+using ExportDocuments.ExternalLibs;
+using System.IO;
 
 namespace ExportDocuments
 {
@@ -22,13 +21,22 @@ namespace ExportDocuments
       if (!Directory.Exists(path))
         Directory.CreateDirectory(path);
 
-      IExporter exporter= new DocumentExporter(document);
+      IExporter exporter = new DocumentExporter(document);
 
       if (withEncryption)
-        exporter = new DocumentExporterWithEncrypt(exporter);
+      {
+        var encryptor = new Encryption();
+        var encryptAdapter = new EncryptAdapter(encryptor);
+
+        exporter = new DocumentExporterWithEncrypt(exporter, encryptAdapter);
+      }
 
       if (withCompression)
-        exporter = new DocumentExporterWithZip(exporter);
+      {
+        var compression = new Compression();
+        var zipAdapter = new ZipAdatper(compression);
+        exporter = new DocumentExporterWithZip(exporter, zipAdapter);
+      }
 
       exporter.Export(path);
     }

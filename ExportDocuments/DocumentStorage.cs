@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using ExportDocuments.Models;
+using System.Collections.Generic;
 
 namespace ExportDocuments
 {
@@ -12,7 +12,7 @@ namespace ExportDocuments
       var doc1 = new Document(1, $"name-{1}", "");
       var doc2 = new Document(2, $"name-{2}", "");
       var doc3 = new Document(3, $"name-{3}", "");
-      
+
       var kit3 = new DocumentKit(34,
                                  "kit-3",
                                  new List<IDocument>() { new Document(43, "name-43", ""), doc3 });

@@ -1,6 +1,6 @@
+using ExportDocuments.Wrappers;
 using System;
 using System.Collections.Generic;
-using ExportDocuments.Wrappers;
 
 namespace ExportDocuments
 {
@@ -23,11 +23,6 @@ namespace ExportDocuments
                              exportDir,
                              options.WithCompression,
                              options.WithEncryption);
-      }
-
-      foreach (var item in DocumentStorage.Documents)
-      {
-        Console.WriteLine(item.Description);
       }
 
       Console.ReadKey();

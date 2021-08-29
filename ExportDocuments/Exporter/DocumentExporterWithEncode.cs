@@ -1,5 +1,4 @@
 using System;
-using ExportDocuments.Wrappers;
 
 namespace ExportDocuments.Exporter
 {
@@ -8,10 +7,12 @@ namespace ExportDocuments.Exporter
   /// </summary>
   public class DocumentExporterWithEncrypt : ExporterDecoratorBase
   {
-    public DocumentExporterWithEncrypt(IExporter exported)
+    private IEncryptor encryptor;
+
+    public DocumentExporterWithEncrypt(IExporter exported, IEncryptor encryptor)
       : base(exported)
     {
-
+      this.encryptor = encryptor;
     }
 
     public override void Export(string path)
@@ -23,7 +24,7 @@ namespace ExportDocuments.Exporter
     private void Encrypt(string path)
     {
       Console.WriteLine($"Файлы в папке {path} зашифрованы");
-      FileEncryptor.Encrypt(path);
+      this.encryptor.Encrypt(path);
     }
   }
 }
